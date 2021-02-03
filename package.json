@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Old-School music bot",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
+    "2pg-music": "^1.1.2",
     "@discordjs/opus": "^0.4.0",
     "discord": "^0.8.2",
     "discord.js": "^12.5.1",
@@ -18,8 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node --experimental-json-modules index.js"
   },
   "repository": {
     "type": "git",
