@@ -1,5 +1,6 @@
 import { readdirSync } from 'fs';
 import { resolve } from 'path';
+import config from '../settings.json';
 
 export class CommandHandler {
   commands = new Map();
@@ -19,7 +20,7 @@ export class CommandHandler {
 
   async handle(msg) {
     try {
-      const prefix = "g/"
+      const prefix = config.prefix;
       const args = msg.content
         .split(' ')
         .slice(1);

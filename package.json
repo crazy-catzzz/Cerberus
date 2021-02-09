@@ -4,6 +4,7 @@
   "description": "Old-School music bot",
   "main": "index.js",
   "type": "module",
+  "license": "ISC",
   "dependencies": {
     "2pg-music": "^1.1.2",
     "@discordjs/opus": "^0.4.0",
@@ -27,7 +28,6 @@
     "url": "git+https://github.com/miao704g/Greasy.git"
   },
   "author": "CrazCatzzz aka miao704g",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/miao704g/Greasy/issues"
   },
