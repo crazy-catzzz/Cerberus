@@ -18,7 +18,7 @@ You can play, skip, stop, seek, take a look at the queue and much more!
 
 - Title pretty much speaks for itself
 
-### Other way: Self host
+### Other way: Self-Host
 
 This bot is hosted on repl.it so you may want to follow [the idiot's guide](https://anidiots.guide/hosting/repl)
 
