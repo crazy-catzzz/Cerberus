@@ -20,7 +20,7 @@ client.on('ready', () => {
 
 client.on('message', async (msg) => {
   if (msg.author.bot) return;
-
+  if (!msg.content.startsWith(config.prefix)) return
   await commandHandler.handle(msg);
 });
 
