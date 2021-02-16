@@ -1,5 +1,5 @@
 # Privacy Policy
-By using Greasy, you agree to this Privacy Policy.
+By using Cerberus, you agree to this Privacy Policy.
 
 # What data is stored?
 We do not store data.
