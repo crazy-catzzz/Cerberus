@@ -27,7 +27,7 @@ export default new class extends Command {
       case "music":
         const musicEmbed = new MessageEmbed()
           .setTitle("♫ Music commands ♫")
-          .setDescription(`This is a list of every music command that this bot has to offer.`)
+          .setDescription(`This is a list of every music command this bot has to offer.`)
           .setColor('0x0091F4')
           .addFields(
             {name: `${config.prefix}play <song name>`, value: 'Play a song!'},
@@ -54,6 +54,7 @@ export default new class extends Command {
           .setTimestamp()
           .setFooter('Cerberus was created and is developed by CrazyCatzzz#6964', 'https://cdn.discordapp.com/avatars/459097988397269002/cf3841f5e388b4b8373e7c071cfb239f.png');
         msg.channel.send(generalEmbed);
+        break;
     };
   }
 }

@@ -10,11 +10,20 @@ export default new class extends Command {
     if(user) {
       const member = msg.guild.member(user);
       if(member) {
-        const reason = args[1];
-        
+        /* get reason */
+        const reason = args.join(' ').slice(args[0].length+1);
+
+        /* create embed for DM */
+        const bannedEmbed = new MessageEmbed()
+          .setDescription(`${msg.author.username} banned you from **${msg.guild.name}**.`)
+          .addFields(
+            {name: 'Reason:', value: reason},
+          )
+          .setColor('0x0091F4');
+
         /* send DM */
         await user
-          .send(`${msg.author} banned you from **${msg.guild.name}** for: ${reason}`)
+          .send(bannedEmbed)
           .catch(err => {console.log(err)});
         
         /* ban member */
@@ -22,15 +31,15 @@ export default new class extends Command {
           .ban({ reason: reason })
           .then(() => {
             const embed = new MessageEmbed()
-              .setAuthor(msg.guild.member(msg.author), msg.author.avatarURL)
+              .setAuthor(msg.author.username, msg.author.avatarURL)
               .setDescription(`${msg.author} banned ${user}`)
               .addFields(
-                {name: `reason:`, value: reason}
-                )
+                {name: `Reason:`, value: reason},
+              )
               .setColor('0x0091F4');
             msg.channel.send(embed);
           });
       } else msg.reply("The user isn't in this server!");
-    } else msg.reply("You didn't mention the user to ban!")
+    } else msg.reply("You didn't mention the user to ban!");
   }
 }

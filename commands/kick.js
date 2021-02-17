@@ -7,21 +7,23 @@ export default new class extends Command {
   async execute(msg, ...args) {
     if(!msg.guild.member(msg.author).hasPermission('KICK_MEMBERS')) return;
     const user = msg.mentions.users.first();
-    var reason;
     if(user) {
       const member = msg.guild.member(user);
       if(member) {
-        /* get reason */ //UNDER DEVELOPMENT
-        for(var x = 0;x <= args.length-1;x++)
-        {
-          if(x => 1)
-            reason+=args[x]
-          
-        }
+        /* get reason */
+        const reason = args.join(' ').slice(args[0].length+1);
+
+        /* create embed for DM */
+        const kickedEmbed = new MessageEmbed()
+          .setDescription(`${msg.author.username} kicked you from **${msg.guild.name}**.`)
+          .addFields(
+            {name: 'Reason:', value: reason},
+          )
+          .setColor('0x0091F4');
 
         /* send DM */
         await user
-          .send(`${msg.author.username} kicked you from **${msg.guild.name}** for: ${reason}`)
+          .send(kickedEmbed)
           .catch(err => {console.log(err)});
         
         /* kick member */
@@ -38,6 +40,6 @@ export default new class extends Command {
             msg.channel.send(embed);
           });
       } else msg.reply("The user isn't in this server!");
-    } else msg.reply("You didn't mention the user to ban!");
+    } else msg.reply("You didn't mention the user to kick!");
   }
 }
