@@ -30,7 +30,6 @@ export default new class extends Command {
           .setDescription(`This is a list of every music command that this bot has to offer.`)
           .setColor('0x0091F4')
           .addFields(
-            {name: `${config.prefix}help`, value: 'Show this message.'},
             {name: `${config.prefix}play <song name>`, value: 'Play a song!'},
             {name: `${config.prefix}queue`, value: 'Show the queue.'},
             {name: `${config.prefix}seek <seconds>`, value: 'Seek a point in the song.'},
@@ -42,6 +41,19 @@ export default new class extends Command {
           .setFooter('Cerberus was created and is developed by CrazyCatzzz#6964', 'https://cdn.discordapp.com/avatars/459097988397269002/cf3841f5e388b4b8373e7c071cfb239f.png');
         msg.channel.send(musicEmbed);
         break;
+      
+      case "general":
+        const generalEmbed = new MessageEmbed()
+          .setTitle("General Commands")
+          .setDescription(`This is a list of every command that doesn't belong in any particular category.`)
+          .setColor('0x0091F4')
+          .addFields(
+            {name: `${config.prefix}help`, value: 'Show the help message.'},
+            {name: '\u200B', value: '\u200B'},
+          )
+          .setTimestamp()
+          .setFooter('Cerberus was created and is developed by CrazyCatzzz#6964', 'https://cdn.discordapp.com/avatars/459097988397269002/cf3841f5e388b4b8373e7c071cfb239f.png');
+        msg.channel.send(generalEmbed);
     };
   }
 }

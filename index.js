@@ -6,8 +6,6 @@ import config from './settings.json';
 import { Client } from 'discord.js';
 const client = new Client();
 
-import dashboard from 'discord-bot-dashboard'
-
 import { CommandHandler } from './handlers/command-handler.js';
 const commandHandler = new CommandHandler();
 

@@ -10,8 +10,14 @@ export default new class extends Command {
     if(user) {
       const member = msg.guild.member(user);
       if(member) {
-        const channel = msg.channel;
         const reason = args[1];
+        
+        /* send DM */
+        await user
+          .send(`${msg.author} banned you from **${msg.guild.name}** for: ${reason}`)
+          .catch(err => {console.log(err)});
+        
+        /* ban member */
         member
           .ban({ reason: reason })
           .then(() => {
@@ -22,9 +28,8 @@ export default new class extends Command {
                 {name: `reason:`, value: reason}
                 )
               .setColor('0x0091F4');
-            channel.send(embed);
+            msg.channel.send(embed);
           });
-        user.send(`${msg.author} banned you from ${msg.guild.name} for ${reason}`);
       } else msg.reply("The user isn't in this server!");
     } else msg.reply("You didn't mention the user to ban!")
   }
