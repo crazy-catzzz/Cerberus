@@ -1,7 +1,7 @@
 {
-  "name": "greasy",
+  "name": "cerberus",
   "version": "1.0.0",
-  "description": "Old-School music bot",
+  "description": "",
   "main": "index.js",
   "type": "module",
   "license": "ISC",
