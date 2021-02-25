@@ -17,6 +17,7 @@ export default new class extends Command {
             {name: `\`general\``, value: 'General commands.', inline: true},
             {name: `\`music\``, value: 'Music commands.', inline: true},
             {name: `\`moderation\``, value: 'Moderation commands.', inline: true},
+            {name: `\`config\``, value: 'Bot configuration commands.', inline: true},
             {name: '\u200B', value: '\u200B'},
           )
           .setTimestamp()
@@ -54,6 +55,21 @@ export default new class extends Command {
           .setTimestamp()
           .setFooter('Cerberus was created and is developed by CrazyCatzzz#6964', 'https://cdn.discordapp.com/avatars/459097988397269002/cf3841f5e388b4b8373e7c071cfb239f.png');
         msg.channel.send(generalEmbed);
+        break;
+      
+      case "moderation":
+        const moderationEmbed = new MessageEmbed()
+          .setTitle("Moderation Commands")
+          .setDescription(`This is a list of every command that moderators can use to maintain order within the server.`)
+          .setColor('0x0091F4')
+          .addFields(
+            {name: `${config.prefix}kick`, value: 'Kick a member.\nRequires the \`KICK_MEMBERS\` permission.'},
+            {name: `${config.prefix}ban`, value: 'Ban a member.\nRequires the \`BAN_MEMBERS\` permission.'},
+            {name: '\u200B', value: '\u200B'},
+          )
+          .setTimestamp()
+          .setFooter('Cerberus was created and is developed by CrazyCatzzz#6964', 'https://cdn.discordapp.com/avatars/459097988397269002/cf3841f5e388b4b8373e7c071cfb239f.png');
+        msg.channel.send(moderationEmbed);
         break;
     };
   }

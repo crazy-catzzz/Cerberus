@@ -1,23 +1,20 @@
-import { readdirSync } from 'fs';
-import { resolve } from 'path';
-import config from '../settings.json';
-
 export class Automod {
 
-  async check() {
-    for (var i = 0; i < Config.badwords.length; i++) {
-      if (message.content.includes(Config.badwords[i])) {
+  async check(msg, badwords) {
+    console.log(msg.content)
 
-      let member = message.member;
-
-      message
-        .delete({timeout: 1})
-        .catch(err => {
-          console.error(err)
-        });
-        break;
+    const messageContent = msg.content.split(' ')
+    for(var i = 0; i < badwords.length; i++) {
+      console.log(msg.content)
+      if (msg.content.includes(badwords[i])) {
+        console.log(messageContent)
+        msg
+          .delete({timeout: 1})
+          .catch(err => {
+            console.error(err)
+          });
+        console.log(msg.content)
       }
-    };
+    }
   };
-
-}
+};

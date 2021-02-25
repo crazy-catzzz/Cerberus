@@ -18,9 +18,8 @@ export class CommandHandler {
     console.log(`Loaded ${this.commands.size} commands`);
   }
 
-  async handle(msg) {
+  async handle(msg, prefix) {
     try {
-      const prefix = config.prefix;
       const args = msg.content
         .split(' ')
         .slice(1);
