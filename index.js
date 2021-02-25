@@ -6,14 +6,11 @@ const client = new Client();
 
 import Database from '@replit/database';
 
-export const prefixes = new Database();
+export const serverConfig = new Database();
 const globalPrefix = config.prefix;
-
-export const automodOnOff = new Database();
 const automodDefault = config.automodDefault;
-
-export const automodList = new Database();
 const automodListDefault = config.badwords;
+
 
 import { CommandHandler } from './handlers/command-handler.js';
 const commandHandler = new CommandHandler();
@@ -35,10 +32,10 @@ client.on('message', async (msg) => {
   let badwords;
   let automodEnabled;
 
-  let checkAutomodOnOff = await automodOnOff.get(`${msg.guild.id}-AutomodSetting`);
+  let checkAutomodOnOff = await serverConfig.get(`${msg.guild.id}-AutomodSetting`);
   console.log(checkAutomodOnOff);
 
-  let checkAutomodList = await automodList.get(`${msg.guild.id}-AutomodList`);
+  let checkAutomodList = await serverConfig.get(`${msg.guild.id}-AutomodList`);
   console.log(checkAutomodList);
 
   if(checkAutomodOnOff === null) {
@@ -49,7 +46,7 @@ client.on('message', async (msg) => {
             badwords = automodListDefault;
             await automod.check(msg, badwords);
           } else {
-            badwords = await automodList.get(`${msg.guild.id}-AutomodList`);
+            badwords = await serverConfig.get(`${msg.guild.id}-AutomodList`);
             await automod.check(msg, badwords);
           }
           break;
@@ -63,7 +60,7 @@ client.on('message', async (msg) => {
   /*PREFIX CHECK*/
   let prefix;
 
-  let guildPrefix = await prefixes.get(`${msg.guild.id}-prefix`)
+  let guildPrefix = await serverConfig.get(`${msg.guild.id}-prefix`)
   if(typeof guildPrefix === "string") {
     prefix = guildPrefix
   } else prefix = globalPrefix;
