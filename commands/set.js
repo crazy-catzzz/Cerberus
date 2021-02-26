@@ -1,5 +1,5 @@
 import Command from './command.js'
-import { serverConfig } from '../index.js';
+import { serverConfig, globalPrefix } from '../index.js';
 
 export default new class extends Command {
   name = 'set';
@@ -22,25 +22,28 @@ export default new class extends Command {
         if(typeof args[1] === "string") {
           switch(args[1]) {
             case 'become':
-              for(var i = 2; i < args.length; i++) {
-                let badArray =+ [args[i]];
-                console.log(badArray);
-                await serverConfig.set(`${msg.guild.id}-AutomodList`, [badArray]);
-              }
+              const joinBadArray = args.join(' ').slice(args[0].length+args[1].length+2);
+              const badArray = joinBadArray.split(' ');
+              await serverConfig.set(`${msg.guild.id}-AutomodList`, [badArray]);
               break;
 
             case 'on':
+              if(checkAutomodOnOff) return msg.channel.send('Automatic Moderation is already ON!');
               await serverConfig.set(`${msg.guild.id}-AutomodSetting`, true);
+              msg.channel.send('Automatic Moderation is now ON.');
               break;
 
             case 'off':
+              if(!checkAutomodOnOff) return msg.channel.send('Automatic Moderation is already OFF!');
               await serverConfig.set(`${msg.guild.id}-AutomodSetting`, false);
+              msg.channel.send('Automatic Moderation is now OFF.');
               break;
           }
         } else if(checkAutomodOnOff) msg.channel.send(`The forbidden words are \`${badList}\``);
         break;
 
       case "linkFilter":
+        //switch()
         break;
     }
   }

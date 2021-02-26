@@ -7,13 +7,16 @@ const client = new Client();
 import Database from '@replit/database';
 
 export const serverConfig = new Database();
-const globalPrefix = config.prefix;
+export const globalPrefix = config.prefix;
 const automodDefault = config.automodDefault;
 const automodListDefault = config.badwords;
 
 
 import { CommandHandler } from './handlers/command-handler.js';
 const commandHandler = new CommandHandler();
+
+import { LinkFilter } from './modules/linkFilter.js';
+const linkFilter = new LinkFilter();
 
 import { Automod } from './modules/automod.js';
 const automod = new Automod();
@@ -22,7 +25,7 @@ commandHandler.init();
 
 client.on('ready', () => {
   console.log('Bot is ready!');
-  client.user.setActivity(`in ${client.guilds.cache.size} servers`, { type: "PLAYING" });
+  client.user.setActivity(`${client.guilds.cache.size} servers`, { type: "WATCHING" });
 });
 
 client.on('message', async (msg) => {
@@ -30,7 +33,6 @@ client.on('message', async (msg) => {
 
   /*AUTOMOD*/
   let badwords;
-  let automodEnabled;
 
   let checkAutomodOnOff = await serverConfig.get(`${msg.guild.id}-AutomodSetting`);
   console.log(checkAutomodOnOff);
@@ -56,11 +58,22 @@ client.on('message', async (msg) => {
       }
 
   }
+
+  /*LINK FILTER*/
+  let badLinks = config.badLinks;
+  let filterEnabled = await serverConfig.get(`${msg.guild.id}-LinkFilterSetting`);
+  console.log(filterEnabled);
+
+  switch(filterEnabled) {
+    case undefined || null || true || "true":
+      linkFilter.check(msg, badLinks);
+      break;
+  }
   
   /*PREFIX CHECK*/
   let prefix;
 
-  let guildPrefix = await serverConfig.get(`${msg.guild.id}-prefix`)
+  let guildPrefix = await serverConfig.get(`${msg.guild.id}-Prefix`)
   if(typeof guildPrefix === "string") {
     prefix = guildPrefix
   } else prefix = globalPrefix;

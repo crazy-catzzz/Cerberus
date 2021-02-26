@@ -10,12 +10,11 @@ export default new class extends Command {
     console.log(msg.author.id === config.ownerID)
     if(msg.author.id === config.ownerID) {
       serverConfig.list().then(keys => {
-        console.log(keys);
         for(var i = 0; i < keys.length; i++) {
           serverConfig.delete(keys[i]);
-        }
-    
-      })
-    } else msg.channel.send("Only the bot owner can do that!")
+        };
+        msg.channel.send("Successfully reset Database!");
+      });
+    } else msg.channel.send("Only the bot owner can do that!");
   }
 }

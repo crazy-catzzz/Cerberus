@@ -1,6 +1,6 @@
 {
   "prefix": "??",
-  "badwords": ["fuck", "Fuck", "bitch", "Bitch", "asshole", "Asshole"],
-  "automodDefault": false,
+  "badwords": [ "fuck", "Fuck", "bitch", "Bitch", "asshole", "Asshole" ],
+  "badLinks": [ "google.com" ],
   "ownerID": "459097988397269002"
 }
