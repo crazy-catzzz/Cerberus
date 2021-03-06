@@ -1,6 +1,9 @@
 import Command from './command.js';
 import { MessageEmbed } from 'discord.js';
 
+import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
+const embed = new DefaultEmbed();
+
 export default new class extends Command {
   name = 'kick';
 
@@ -39,7 +42,7 @@ export default new class extends Command {
               .setColor('0x0091F4');
             msg.channel.send(embed);
           });
-      } else msg.reply("The user isn't in this server!");
-    } else msg.reply("You didn't mention the user to kick!");
+      } else embed.send("The user isn't in this server!", '0xFF0000', msg.channel);
+    } else embed.send("You didn't mention the user to kick!", '0xFF0000', msg.channel);
   }
 }

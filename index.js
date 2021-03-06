@@ -1,8 +1,10 @@
 import config from './settings.json';
 
-import { Client } from 'discord.js';
-const client = new Client();
+import { Client, MessageAttachment } from 'discord.js';
+export const client = new Client();
 
+import { WelcomeMessage } from './modules/welcomeMessage.js';
+const welcomeMessage = new WelcomeMessage();
 
 import Database from '@replit/database';
 
@@ -24,21 +26,25 @@ const automod = new Automod();
 commandHandler.init();
 
 client.on('ready', () => {
-  console.log('Bot is ready!');
+  console.log(`Bot is ready! Logged in as ${client.user.tag}`);
   client.user.setActivity(`${client.guilds.cache.size} servers`, { type: "WATCHING" });
 });
 
-client.on('message', async (msg) => {
+client.on('guildMemberAdd', member => {
+  welcomeMessage.sendWelcomeMsg(member);
+});
+
+client.on('message', async msg => {
   if(msg.author.bot) return;
 
   /*AUTOMOD*/
   let badwords;
 
   let checkAutomodOnOff = await serverConfig.get(`${msg.guild.id}-AutomodSetting`);
-  console.log(checkAutomodOnOff);
+  //console.log(checkAutomodOnOff);
 
   let checkAutomodList = await serverConfig.get(`${msg.guild.id}-AutomodList`);
-  console.log(checkAutomodList);
+  //console.log(checkAutomodList);
 
   if(checkAutomodOnOff === null) {
   } else {
@@ -67,6 +73,9 @@ client.on('message', async (msg) => {
   switch(filterEnabled) {
     case undefined || null || true || "true":
       linkFilter.check(msg, badLinks);
+      break;
+    default:
+      console.log('Filter disabled')
       break;
   }
   
