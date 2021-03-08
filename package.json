@@ -8,28 +8,18 @@
   "dependencies": {
     "2pg-music": "^1.1.2",
     "@discordjs/opus": "^0.4.0",
-    "@keyv/mongo": "^1.1.0",
     "@replit/database": "^2.0.0",
     "body-parser": "^1.19.0",
     "canvas": "^2.6.1",
-    "cookies": "^0.8.0",
     "disco-oauth": "^5.0.1",
-    "discord": "^0.8.2",
-    "discord-bot-dashboard": "^0.2.0",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-rate-limit": "^5.2.6",
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
-    "keyv": "^4.0.3",
-    "mongodb": "^3.6.4",
-    "mongoose": "^5.11.17",
     "node": "^15.7.0",
     "node-fetch": "^2.6.1",
     "nodejs": "0.0.0",
-    "rate-limit-mongo": "^2.3.0",
     "yt-search": "^2.6.0",
     "ytdl-core": "^4.4.5"
   },
@@ -39,11 +29,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miao704g/Greasy.git"
+    "url": "git+https://github.com/miao704g/Cerberus.git"
   },
-  "author": "CrazCatzzz aka miao704g",
+  "author": "CrazyCatzzz aka miao704g",
   "bugs": {
-    "url": "https://github.com/miao704g/Greasy/issues"
+    "url": "https://github.com/miao704g/Cerberus/issues"
   },
-  "homepage": "https://github.com/miao704g/Greasy#readme"
+  "homepage": "https://github.com/miao704g/Cerberus#readme"
 }

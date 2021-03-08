@@ -13,6 +13,8 @@ export const globalPrefix = config.prefix;
 const automodDefault = config.automodDefault;
 const automodListDefault = config.badwords;
 
+import { DefaultEmbed } from './content/embeds/defaultEmbed.js';
+const embed = new DefaultEmbed();
 
 import { CommandHandler } from './handlers/command-handler.js';
 const commandHandler = new CommandHandler();
@@ -88,6 +90,10 @@ client.on('message', async msg => {
   } else prefix = globalPrefix;
 
   if (!msg.content.startsWith(prefix)) return
+
+  /*BAN CHECK*/
+  const isBanned = await serverConfig.get(`${msg.author.id}-banned`);
+  if(isBanned) return embed.send("⚠ You are banned from using this bot!", '0xFF0000', msg.channel)
   await commandHandler.handle(msg, prefix);
 });
 

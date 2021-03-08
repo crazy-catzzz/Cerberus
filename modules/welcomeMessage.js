@@ -1,5 +1,3 @@
-//porca troia mi ammazzo
-
 import { serverConfig } from '../index.js';
 
 import Canvas from 'canvas';

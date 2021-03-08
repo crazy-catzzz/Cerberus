@@ -45,15 +45,8 @@ export default new class extends Command {
       case "welcomeChannelName":
         const setChannelName = await serverConfig.get(`${msg.guild.id}-WelcomeChannelName`);
         var channelName = args.join(' ').slice(args[0].length+1);
-        console.log(channelName.startsWith('<'));
 
         if(!channelName) return msg.channel.send(`The welcome channel is \`${setChannelName}\``);
-        if(channelName.startsWith('#')) channelName.slice(1);
-        if(channelName.startsWith('<')) {
-          const channelID = channelName;
-          console.log(channelID);
-          channelName = channelID.name;
-        }
 
         serverConfig.set(`${msg.guild.id}-WelcomeChannelName`, channelName);
         msg.channel.send(`Successfully set the welcome channel to \`${channelName}\``)
