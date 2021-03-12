@@ -15,7 +15,7 @@ export default new class extends Command {
         for(var i = 0; i < matches.length; i++) {
           serverConfig.delete(matches[i]);
         };
-        msg.channel.send("Successfully reset Server Configuration!");
+        embed.send("Successfully reset Server Configuration!", '0x45B200', msg.channel);
       });
     } else embed.send("⚠ You don't have permission to do that!", '0xFF0000', msg.channel);
   }

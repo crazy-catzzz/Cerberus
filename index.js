@@ -19,9 +19,6 @@ const embed = new DefaultEmbed();
 import { CommandHandler } from './handlers/command-handler.js';
 const commandHandler = new CommandHandler();
 
-import { LinkFilter } from './modules/linkFilter.js';
-const linkFilter = new LinkFilter();
-
 import { Automod } from './modules/automod.js';
 const automod = new Automod();
 
@@ -67,20 +64,6 @@ client.on('message', async msg => {
 
   }
 
-  /*LINK FILTER*/
-  let badLinks = config.badLinks;
-  let filterEnabled = await serverConfig.get(`${msg.guild.id}-LinkFilterSetting`);
-  console.log(filterEnabled);
-
-  switch(filterEnabled) {
-    case undefined || null || true || "true":
-      linkFilter.check(msg, badLinks);
-      break;
-    default:
-      console.log('Filter disabled')
-      break;
-  }
-  
   /*PREFIX CHECK*/
   let prefix;
 
@@ -89,7 +72,7 @@ client.on('message', async msg => {
     prefix = guildPrefix
   } else prefix = globalPrefix;
 
-  if (!msg.content.startsWith(prefix)) return
+  if(!msg.content.startsWith(prefix)) return
 
   /*BAN CHECK*/
   const isBanned = await serverConfig.get(`${msg.author.id}-banned`);

@@ -1,6 +1,9 @@
 import Command from './command.js';
 import { MusicHandler } from '../handlers/music-handler.js';
 
+import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
+const embed = new DefaultEmbed();
+
 export default new class extends Command {
   name = 'seek';
 
@@ -14,6 +17,6 @@ export default new class extends Command {
 
     await player.seek(to);
 
-    await msg.channel.send(`I spun the record to \`${to}s\`!`);
+    await embed.send(`I spun the record to \`${to}s\`!`, '0x000000', msg.channel);
   }
 }

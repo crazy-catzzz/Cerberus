@@ -3,5 +3,6 @@
   "badwords": [ "fuck", "Fuck", "bitch", "Bitch", "asshole", "Asshole" ],
   "badLinks": [ "google.com" ],
   "ownerID": "459097988397269002",
-  "temporaryAccessID": "none"
+  "temporaryAccessID": "none",
+  "ownerAvatarURL": "https://cdn.discordapp.com/avatars/459097988397269002/da079fdf4257ae8764bfdbf4dc21526c.png?size=64"
 }

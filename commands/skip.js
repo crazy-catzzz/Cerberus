@@ -1,6 +1,9 @@
 import Command from './command.js';
 import { MusicHandler } from '../handlers/music-handler.js';
 
+import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
+const embed = new DefaultEmbed();
+
 export default new class extends Command {
   name = 'skip';
 
@@ -10,6 +13,6 @@ export default new class extends Command {
     const oldTrack = player.q.peek();
     await player.skip();
 
-    await msg.channel.send(`I skipped \`${oldTrack.title}\`!`);
+    await embed.send(`I skipped \`${oldTrack.title}\`!`, '0x000000', msg.channel);
   }
 }
