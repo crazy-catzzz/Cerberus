@@ -42,15 +42,19 @@ export default new class extends Command {
         } else if(checkAutomodOnOff) msg.channel.send(`The forbidden words are \`${badList}\``);
         break;
 
-      case "welcomeChannelName":
-        const setChannelName = await serverConfig.get(`${msg.guild.id}-WelcomeChannelName`);
-        var channelName = args.join(' ').slice(args[0].length+1);
+      case "welcomeChannel":
+        const setChannel = await serverConfig.get(`${msg.guild.id}-WelcomeChannel`);
+        const channelID = args.join(' ').slice(args[0].length+3, -1); //find channel ID in message content
+        const channel = await msg.guild.channels.cache.get(channelID) || await msg.guild.channels.cache.get(setChannel); //get channel properties
 
-        if(!channelName) return msg.channel.send(`The welcome channel is \`${setChannelName}\``);
+        if(!channelID) return msg.channel.send(`The welcome channel is \`${channel.name}\``);
 
-        serverConfig.set(`${msg.guild.id}-WelcomeChannelName`, channelName);
-        msg.channel.send(`Successfully set the welcome channel to \`${channelName}\``)
+        serverConfig.set(`${msg.guild.id}-WelcomeChannel`, channelID);
+        msg.channel.send(`Successfully set the welcome channel name to \`${channel.name}\``)
         break;
+      
+      /*case "blacklistChannel": [[WIP]]
+        const blacklisted = args.join(' ').slice(args[0].length+1);*/
     }
   }
 }

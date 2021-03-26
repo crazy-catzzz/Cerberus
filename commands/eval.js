@@ -1,7 +1,7 @@
 import Command from './command.js';
 import config from '../settings.json';
 import { inspect } from 'util';
-import { client } from '../index.js'; //needed for client.emit(); DO NOT REMOVE
+import { client, serverConfig } from '../index.js'; //needed for client.emit(); and db management DO NOT REMOVE
 
 import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
 const embed = new DefaultEmbed();

@@ -90,7 +90,7 @@ export default new class extends Command {
           .addFields(
             {name: `${config.prefix}set automod <args>`, value: 'Automod settings.\nLeave blank to show the forbidden words or use **these arguments:**\n> \`on\`/\`off\`: turn Automatic Moderation ON or OFF;\n> \`become <words>\`: set the forbidden words list into the passed words.\nRequires the \`MANAGE_SERVER\` permission.'},
             {name: `${config.prefix}set prefix <new prefix>`, value: "Change the bot's prefix.\nRequires the \`MANAGE_SERVER\` permission."},
-            {name: `${config.prefix}set welcomeChannelName <channel name>`, value: "Change the channel where Cerberus will send welcome messages.\nLeave blank to disable welcome messages.\nRequires the \`MANAGE_SERVER\` permission."},
+            {name: `${config.prefix}set welcomeChannel <channel>`, value: "Change the channel where Cerberus will send welcome messages.\nLeave blank to disable welcome messages.\nRequires the \`MANAGE_SERVER\` permission."},
             {name: `${config.prefix}resetConfig`, value: `Reset Server Configuration.\nRequires the \`MANAGE_SERVER\` permission.`},
             {name: '\u200B', value: '\u200B'},
           )

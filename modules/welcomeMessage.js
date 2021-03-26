@@ -23,8 +23,8 @@ const applyText = (canvas, text) => {
 
 export class WelcomeMessage {
   async sendWelcomeMsg(member) {
-    const welcomeChannelName = await serverConfig.get(`${member.guild.id}-WelcomeChannelName`);
-    const channel = member.guild.channels.cache.find(ch => ch.name === welcomeChannelName);
+    const welcomeChannel = await serverConfig.get(`${member.guild.id}-WelcomeChannel`);
+    const channel = await member.guild.channels.cache.get(welcomeChannel);
     if (!channel) return;
 
     const canvas = Canvas.createCanvas(700, 250);

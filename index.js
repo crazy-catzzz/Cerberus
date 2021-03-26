@@ -1,5 +1,7 @@
 import config from './settings.json';
 
+import './keepAwake/awake.js'
+
 import { Client, MessageAttachment } from 'discord.js';
 export const client = new Client();
 
@@ -26,7 +28,7 @@ commandHandler.init();
 
 client.on('ready', () => {
   console.log(`Bot is ready! Logged in as ${client.user.tag}`);
-  client.user.setActivity(`${client.guilds.cache.size} servers`, { type: "WATCHING" });
+  client.user.setActivity(`${config.prefix}help`, { type: "LISTENING" });
 });
 
 client.on('guildMemberAdd', member => {
