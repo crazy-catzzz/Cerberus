@@ -1,5 +1,9 @@
 import { MessageEmbed } from 'discord.js';
+import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
 import config from '../settings.json';
+
+const embed = new DefaultEmbed();
+
 
 export class HelpManager{
   noArg(msg) {
