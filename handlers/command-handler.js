@@ -1,6 +1,10 @@
+import { DefaultEmbed } from '../content/embeds/defaultEmbed.js';
+const embed = new DefaultEmbed();
+
 import { readdirSync } from 'fs';
 import { resolve } from 'path';
 import config from '../settings.json';
+
 
 export class CommandHandler {
   commands = new Map();
@@ -29,6 +33,10 @@ export class CommandHandler {
         .slice(prefix.length);
 
       const command = this.commands.get(commandName);
+
+      if(command?.nsfw && !msg.channel.nsfw) 
+        return embed.send(`⚠ This command can only be ran in a NSFW channel.`, '0xFF0000', msg.channel);
+
       await command?.execute(msg, ...args); 
     } catch (error) {
       await msg.channel.send(`⚠ ${error?.message}`);

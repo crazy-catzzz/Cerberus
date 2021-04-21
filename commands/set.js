@@ -21,10 +21,22 @@ export default new class extends Command {
       case "automod":
         if(typeof args[1] === "string") {
           switch(args[1]) {
-            case 'become':
+            case 'add':
+              var oldBadArray = await serverConfig.get(`${msg.guild.id}-AutomodList`);
+
               const joinBadArray = args.join(' ').slice(args[0].length+args[1].length+2);
-              const badArray = joinBadArray.split(' ');
-              await serverConfig.set(`${msg.guild.id}-AutomodList`, [badArray]);
+              const addBadArray = joinBadArray.split(' ');
+              var newBadArray;
+
+              if(!oldBadArray || oldBadArray == addBadArray) {
+                newBadArray = addBadArray
+              }
+              else {
+                newBadArray = oldBadArray.concat(addBadArray);
+              }
+              
+
+              await serverConfig.set(`${msg.guild.id}-AutomodList`, [newBadArray]);
               break;
 
             case 'on':

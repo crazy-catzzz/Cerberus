@@ -2,7 +2,7 @@ import config from './settings.json';
 
 import './keepAwake/awake.js'
 
-import { Client, MessageAttachment } from 'discord.js';
+import { Client } from 'discord.js';
 export const client = new Client();
 
 import { WelcomeMessage } from './modules/welcomeMessage.js';
@@ -74,7 +74,7 @@ client.on('message', async msg => {
     prefix = guildPrefix
   } else prefix = globalPrefix;
 
-  if(!msg.content.startsWith(prefix)) return
+  if(!msg.content.startsWith(prefix)) return;
 
   /*BAN CHECK*/
   const isBanned = await serverConfig.get(`${msg.author.id}-banned`);

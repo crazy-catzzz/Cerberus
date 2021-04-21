@@ -8,10 +8,11 @@ const embed = new DefaultEmbed();
 const mediaEmbed = new MediaEmbed();
 
 export default new class extends Command {
-  name = 'randomgif';
+  name = 'hentaigif';
+  nsfw = true;
 
   async execute(msg, ...args) {
-    if(!msg.channel.nsfw) return embed.send(`⚠ This command can only be ran in a NSFW channel.`, '0xFF0000', msg.channel);
+
     const { url } = await fetch('https://nekos.life/api/v2/img/Random_hentai_gif')
       .then(res => res.json())
     

@@ -10,7 +10,7 @@ export default new class extends Command {
 
   async execute(msg, ...args) {
     const user = msg.mentions.users.first();
-    if(!user) return embed.send('error', '0xFF0000', msg.channel);
+    if(!user) return embed.send('You have to mention an user!', '0xFF0000', msg.channel);
     const avatar = user.displayAvatarURL({ format: 'jpg' });
     mediaEmbed.send(avatar, '0x2200CC', msg.channel);
   }

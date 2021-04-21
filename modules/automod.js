@@ -1,6 +1,7 @@
 export class Automod {
 
   check(msg, badwords) {
+    console.log(badwords)
     for(var i = 0; i < badwords.length; i++) {
       if(msg.content.includes(badwords[i])) {
         msg
